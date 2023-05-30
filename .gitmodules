@@ -1,0 +1,6 @@
+[submodule "services/EDU-Segmentation-API"]
+	path = services/EDU-Segmentation-API
+	url = https://github.com/averliz/EDU-Segmentation-API.git
+[submodule "services/EDU-Sentiment-API"]
+	path = services/EDU-Sentiment-API
+	url = https://github.com/averliz/EDU-Sentiment-API.git
