@@ -27,8 +27,8 @@ app.add_middleware(
 @app.get("/api/rest-raw-data/{id}")
 def get_raw_data(id: int):
     file_paths = {
-        1: "C:/Users/jimmy/Documents/GitHub/FYP-App/server/data/rest_han_reg.raw",
-        2: "C:/Users/jimmy/Documents/GitHub/FYP-App/server/data/rest_han_reg_v2.raw",
+        1: "data/rest_han_reg.raw",
+        2: "data/rest_han_reg_v2.raw",
     }
 
     file_path = file_paths.get(id)
