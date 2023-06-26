@@ -5,7 +5,7 @@ import styled from "styled-components";
 import apiService from "../api/apiService";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import "bootswatch/dist/lux/bootstrap.min.css";
+// import "bootswatch/dist/lux/bootstrap.min.css";
 import SegmentResult from "./SegmentResult";
 
 const FormContainer = styled.div`

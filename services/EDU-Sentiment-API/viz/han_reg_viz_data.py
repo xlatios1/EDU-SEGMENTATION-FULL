@@ -11,11 +11,11 @@ import sys
 
 sys.path.insert(0, "C:/Users/jimmy/Documents/GitHub/EDU_Attentions/src")
 
-from dataloaders.multiHAN import DatasetLoader
-from dataloaders.ASP_DICT import REST14_ASP_DICT as ASP_DICT
+from src.dataloaders.multiHAN import DatasetLoader
+from src.dataloaders.ASP_DICT import REST14_ASP_DICT as ASP_DICT
 
 sys.path.insert(0, "C:/Users/jimmy/Documents/GitHub/EDU_Attentions/models")
-from han_reg import HANREG
+from models.han_reg import HANREG
 
 # from src.dataloaders.multiHAN import DatasetLoader
 # from src.dataloaders.ASP_DICT import REST14_ASP_DICT as ASP_DICT

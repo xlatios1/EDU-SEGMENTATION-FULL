@@ -1,7 +1,5 @@
-import json
-from fastapi import FastAPI, Body, HTTPException
+from fastapi import FastAPI, Body
 from pydantic import BaseModel
-from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import run_segbot

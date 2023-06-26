@@ -7,7 +7,7 @@ from torch.nn import init
 from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
 import sys
 sys.path.insert(0, 'C:/Users/jimmy/Documents/GitHub/EDU_Attentions/src')
-from entmax.activations import sparsemax, entmax15
+from src.entmax.activations import sparsemax, entmax15
 # from src.entmax.activations import sparsemax, entmax15
 from torch.autograd import Variable
 

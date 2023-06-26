@@ -7,7 +7,7 @@ import ReviewResult from "./ReviewResult";
 import { parseResponseData } from "../util/DataParsing";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import "bootswatch/dist/lux/bootstrap.min.css";
+// import "bootswatch/dist/lux/bootstrap.min.css";
 
 const FormContainer = styled.div`
   margin-top: 2rem;

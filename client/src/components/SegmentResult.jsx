@@ -1,4 +1,4 @@
-import "bootswatch/dist/lux/bootstrap.min.css";
+// import "bootswatch/dist/lux/bootstrap.min.css";
 import React from "react";
 import { Button as BootstrapButton } from "react-bootstrap";
 import styled from "styled-components";

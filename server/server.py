@@ -9,8 +9,8 @@ import uvicorn
 import util
 
 
-SEGBOT_URL = "http://127.0.0.1:8000/api/"
-EDU_URL = "http://127.0.0.1:8001/api/"
+SEGBOT_URL = "http://localhost:8001/api/"
+EDU_URL = "http://localhost:5002/api/"
 
 class InputText(BaseModel):
     text: str
@@ -43,14 +43,25 @@ def get_raw_data(id: int):
 def analyze_text(input_text: InputText = Body(...)):
     seg_url = SEGBOT_URL + "segbot-segment-service"
     payload = {"query": input_text.text}
+    print("testing1", input_text.text)
     headers = {"Content-Type": "application/json"}
 
     seg_response = requests.post(seg_url, data=json.dumps(payload), headers=headers)
+    print("test2", seg_response)
 
     if seg_response.status_code == 200:
+        print('test3: it was good')
         seg_data = seg_response.json()
+        print('what was the seg_data', seg_data)
         edu_url = EDU_URL + "edu-sentiment-analysis-service"
+        print('edu url', edu_url)
+        merge_ls = []
+        for ls in seg_data['segs']:
+            part = " ".join(ls)
+            merge_ls.append(part)
+        seg_data['segs'] = merge_ls
         edu_payload = seg_data
+        print('edu payload', edu_payload)
         edu_response = requests.post(edu_url, data=json.dumps(edu_payload), headers=headers)
 
         if edu_response.status_code == 200:

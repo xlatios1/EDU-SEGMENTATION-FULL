@@ -3,3 +3,6 @@ venv/
 server/__pycache__
 server/.vscode/
 server/venv/
+*.pyc
+*.pyd
+env

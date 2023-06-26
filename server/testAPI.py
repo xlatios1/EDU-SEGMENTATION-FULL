@@ -1,7 +1,8 @@
 import requests
 import json
+from fastapi import FastAPI, HTTPException
 
-url = "http://localhost:5001/api/segbot-segment-service"
+url = "http://localhost:8000/api/segbot-segment-service"
 payload = {"query": "the food is good but the service is slow"}
 headers = {"Content-Type": "application/json"}
 

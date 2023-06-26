@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Button as BootstrapButton } from "react-bootstrap";
-import "bootswatch/dist/lux/bootstrap.min.css";
+// import "bootswatch/dist/lux/bootstrap.min.css";
 
 const HighlightedText = styled.span`
   background-color: ${({ isHighlighted }) =>

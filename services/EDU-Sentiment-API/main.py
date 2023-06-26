@@ -30,11 +30,13 @@ def home():
 
 @app.post("/api/edu-sentiment-analysis-service", response_model=AnalysisResult)
 def edu_sentiment_analysis(input_data: InputData = Body(...)):
+    
     parsed_query_json = server_util.parse_input(input_data)
     raw_analysis_result = store_attention_scores_from_input(parsed_query_json)
     analysis_result = server_util.convert_to_json(data=raw_analysis_result)
+    print("hellow", analysis_result)
     return {"query": analysis_result}
 
-
+# uvicorn main:app --host localhost --port 5002
 if __name__ == "__main__":
     uvicorn.run(app, host="localhost", port=5002)

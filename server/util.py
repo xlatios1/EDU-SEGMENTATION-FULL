@@ -63,9 +63,10 @@ def json_to_dict(json_str):
 
 
 if __name__ == "__main__":
-    json_string = convert_to_json_from_path("server/data/rest_han_reg_v2_test.raw")
-    print(json_string)
+    json_string = convert_to_json_from_path("data/rest_han_reg_v2_test.raw")
+    # print(json_string)
     dict = json_to_dict(json_string)
+    print(dict)
 
 
     
