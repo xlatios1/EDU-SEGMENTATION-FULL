@@ -45,3 +45,12 @@ Here's a quick guide to navigate through the different parts of the project and 
     Each directory contains a README file with specific instructions on setting up the respective component. Be sure to follow these        instructions to ensure a successful setup.
 
     Note: Replace yourusername in the clone command above with your actual GitHub username.
+
+some environments which we need to start up (patria notes)
+1. 3000 (client)
+2. 4000 (server)
+3. 5000 (server)
+4. 8001 (service)
+if there is env, then activate it
+for segmentation, i used test-api-11 (conda)
+for sentiment, i used fyp-sentiment env (conda)
