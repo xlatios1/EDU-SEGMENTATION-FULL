@@ -1,0 +1,51 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Start Client",
+        "type": "shell",
+        "command": "cd client; npm start",
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      },
+      {
+        "label": "Start Api gateway",
+        "type": "shell",
+        "command": "cd server; uvicorn api_gateway:app --host localhost --port 4000",
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      },
+      {
+        "label": "Start Server",
+        "type": "shell",
+        "command": "cd server; uvicorn server:app --host localhost --port 5000",
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      },
+      {
+        "label": "Start EDU Segmentation API",
+        "type": "shell",
+        "command": "cd services/EDU-Segmentation-API; conda activate test-api-11; uvicorn main:app --host localhost --port 8001",
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      },
+      {
+        "label": "Start EDU Sentiment API",
+        "type": "shell",
+        "command": "cd services/EDU-Sentiment-API; conda activate fyp-sentiment; uvicorn main:app --host localhost --port 5002",
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      }
+    ]
+  }
+  
