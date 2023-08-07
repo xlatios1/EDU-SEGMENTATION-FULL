@@ -8,3 +8,4 @@ server/venv/
 env
 node_modules/*
 services/EDU-Yelp-Sentiment-Backend/node_modules/*
+.env

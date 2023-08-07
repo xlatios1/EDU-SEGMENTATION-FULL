@@ -12,14 +12,13 @@ const Yelp = () => {
   const [businesses, setBusinesses] = useState([]);
   const [load, setIsload] = useState(false);
   const [search, setIsSearch] = useState(false);
-  const location = "Singapore";
   const [chartComponents, setChartComponents] = useState([]);
   const [businessName, setBusinessName] = useState("");
+  const location = "Singapore";
 
   let alertText;
 
   useEffect(() => {
-    console.log("businesseseses", businesses);
     chartComponents.forEach((chart) => chart.destroy());
     setChartComponents([]);
   }, [businesses]);
@@ -34,7 +33,7 @@ const Yelp = () => {
           return await analyzeBusiness(business); // Use the new analyzeBusiness function
         })
       );
-      setBusinesses(analyzedBusinessesPromises)
+      setBusinesses(analyzedBusinessesPromises);
       setIsload(false);
       console.log("final business:", businesses);
       setBusinessName("");

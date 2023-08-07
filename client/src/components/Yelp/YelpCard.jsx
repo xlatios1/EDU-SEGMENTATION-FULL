@@ -12,7 +12,8 @@ const YelpCard = ({ businesses, renderPieCharts }) => {
           <div className="container">
             <div className="left-column">
               <h1>{business.name}</h1>
-              {business.analyzedReviews && renderPieCharts(business.analyzedReviews)}
+              {business.analyzedReviews &&
+                renderPieCharts(business.analyzedReviews)}
             </div>
             <div className="right-column">
               <CardMedia component="img" image={business.image_url} />
