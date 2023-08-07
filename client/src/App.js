@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate, Link } from "react-router-dom";
 import { AppBar, Toolbar, Typography } from "@mui/material";
-import Navigation from "./components/Navigation";
 import Dashboard from "./components/Dashboard";
 import HomePage from "./components/HomePage";
 import SubmitReviewForm from "./components/SubmitReviewForm";
