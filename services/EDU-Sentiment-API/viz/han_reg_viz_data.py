@@ -285,6 +285,7 @@ def store_attention_scores_from_input(input):
     )
     # pickle.dump({"query": query_lst_all_inst_parsed}, open("sample.raw", "wb"))
     print("score finished.")
+    print("the parsed", query_lst_all_inst_parsed)
     return query_lst_all_inst_parsed
 
 

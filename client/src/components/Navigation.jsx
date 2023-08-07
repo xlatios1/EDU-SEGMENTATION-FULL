@@ -67,6 +67,15 @@ const Navigation = () => {
                 GitHub
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                activeclassname="active"
+                to="/yelp"
+              >
+                Yelp
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

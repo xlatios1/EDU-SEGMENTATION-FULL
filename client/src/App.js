@@ -6,8 +6,11 @@ import Dashboard from "./components/Dashboard";
 import HomePage from "./components/HomePage";
 import SubmitReviewForm from "./components/SubmitReviewForm";
 import SubmitSegmentForm from "./components/SubmitSegmentForm";
+import Yelp from "./components/Yelp";
+import './App.css'
 
 const App = () => {
+
   return (
     <Router>
       <AppBar position="static">
@@ -23,6 +26,9 @@ const App = () => {
           </Typography>
           <Typography variant="h6" component={Link} to="/segment" sx={{ textDecoration: "none", color: "inherit", margin: "0 16px" }}>
             Segment
+          </Typography>
+          <Typography variant="h6" component={Link} to="/yelp" sx={{ textDecoration: "none", color: "inherit", margin: "0 16px" }}>
+            Yelp
           </Typography>
         </Toolbar>
       </AppBar>
@@ -41,6 +47,7 @@ const App = () => {
           <Route path="/analyze" element={<SubmitReviewForm />} />
           <Route path="/segment" element={<SubmitSegmentForm />} />
           <Route path="*" element={<Navigate to="/" />} />
+          <Route path="/yelp" element={<Yelp/>} />
         </Routes>
       </div>
     </Router>
