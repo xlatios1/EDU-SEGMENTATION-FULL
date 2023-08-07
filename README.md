@@ -18,19 +18,18 @@ This project is part of the research study - "Aspect-based Sentiment Analysis th
 - `services/`: Includes two GitHub Submodules that link to the Microservices used in this project:
     - Edu-Segmentation-API
     - EDU-Sentiment-API
+    - EDU-Yelp-Sentiment-Backend
     
 Each of these folders has its own README file to describe in detail how to setup and run their individual components.
-
-
 
 ## Getting Started
 
 Here's a quick guide to navigate through the different parts of the project and run it on your local machine:
 
 1. **Clone the repository**
-   Use the following command to clone this repository along with its submodules:
+   Use the following command to clone this repository:
     ```
-    git clone --recurse-submodules https://github.com/yourusername/EDU-Web-Interface.git
+    https://github.com/patrialyx/edu-segmentation-full.git
 
     ```
 
@@ -40,12 +39,10 @@ Here's a quick guide to navigate through the different parts of the project and 
 
     - Frontend: `Client/`
     - Backend: `Server/`
-    - Microservices: `services/Edu-Segmentation-API` and `services/EDU-Sentiment-API`
+    - Microservices: `services/Edu-Segmentation-API`, `services/EDU-Sentiment-API`, `services/EDU-Yelp-Sentiment-Backend`
     
     Each directory contains a README file with specific instructions on setting up the respective component. Be sure to follow these        instructions to ensure a successful setup.
 
-    Note: Replace yourusername in the clone command above with your actual GitHub username.
+After each component has been set up following the steps above, an easy way to start up all required environments would be to modify and run .vscode/tasks.json (ctrl-shift-b) to start up all environments required.
 
-patria:
-
-simply run .vscode/tasks.json in vscode to start up all environments required.
+<em>Contributors: Jeremy Teo, Patria Lim
