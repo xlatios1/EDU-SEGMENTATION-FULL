@@ -43,11 +43,11 @@ pip install -r requirements.txt (uvicorn, fastapi)
 To start the FastAPI server, run the following command in your terminal while your virtual environment is activated:
 
 ```
-uvicorn main:app --reload
-```
-```
 uvicorn main:app --host localhost --port 8001
 ```
-the second command is preferred
 
 This will start the FastAPI server at `http://localhost:8001`. You can send HTTP POST requests to `http://localhost:8001/api/segbot-segment-service` with JSON input data to get segmented output.
+
+
+## Others
+To use GPU, change device="cuda" under run_segbot.py
