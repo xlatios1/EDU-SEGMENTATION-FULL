@@ -49,23 +49,6 @@ app.get('/api/yelp-reviews/:id', async (req, res) => {
   }
 });
 
-app.get('/api/yelp-categories', async (req, res) => {
-  try {
-    const response = await axios.get(
-      `https://api.yelp.com/v3/categories`,
-      {
-        headers: {
-          Authorization: `Bearer ${API_KEY}`,
-        },
-      }
-    );
-    res.json(response.data.categories);
-  } catch (error) {
-    console.error('Error fetching Yelp categories:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
-
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
