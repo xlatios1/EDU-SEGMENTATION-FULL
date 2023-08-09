@@ -31,6 +31,7 @@ def analyze_rest_review(*, payload: dict):
 # Segment user review
 @app.post("/api/segment-rest-review")
 def segment_rest_review(*, payload: dict):
+    print('try')
     url = SERVER_URL + "segment-rest-review"
     headers = {"Content-Type": "application/json"}
     response = requests.post(url, json=payload, headers=headers)

@@ -3,7 +3,7 @@ import json
 from fastapi import FastAPI, HTTPException
 
 url = "http://localhost:8000/api/segbot-segment-service"
-payload = {"query": "the food is good but the service is slow"}
+payload = {"query": "the food is good but the service is slow", "granularity": "conjunction_words", "model": "bert_uncased", "device": "cpu"}
 headers = {"Content-Type": "application/json"}
 
 response = requests.post(url, data=json.dumps(payload), headers=headers)

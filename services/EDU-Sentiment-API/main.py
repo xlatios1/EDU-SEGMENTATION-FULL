@@ -18,6 +18,9 @@ app.add_middleware(
 
 class InputData(BaseModel):
     text: str
+    granularity: str
+    model: str
+    device: str
     segs: list
 
 

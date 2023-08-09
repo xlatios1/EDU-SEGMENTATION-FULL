@@ -3,7 +3,7 @@ import { FormControl, MenuItem, Select, Snackbar } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import apiService from "../api/apiService";
+import apiService from "../api/EDUApiService";
 import ChartComponent from "./ChartComponent";
 import Table from "./Table";
 

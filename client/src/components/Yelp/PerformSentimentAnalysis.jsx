@@ -1,4 +1,4 @@
-import apiService from "../../api/apiService";
+import apiService from "../../api/EDUApiService";
 import { parseResponseData } from "../../util/DataParsing";
 export const analyzeSentiment = async (name, inputText) => {
   try {

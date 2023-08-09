@@ -16,10 +16,16 @@ app.add_middleware(
 
 
 class InputQuery(BaseModel):
-    query: str
+    text: str
+    granularity: str
+    model: str
+    device: str
 
 class SegmentResult(BaseModel):
     text: str
+    granularity: str
+    model: str
+    device: str
     segs: list
 
 
@@ -30,9 +36,17 @@ def home():
 
 @app.post("/api/segbot-segment-service", response_model=SegmentResult)
 def segment_text(input_query: InputQuery = Body(...)):
-    segment_result = run_segbot.main_input_output(input_query.query)
-    return {"text": input_query.query, "segs": segment_result}
-
+    segment_result = run_segbot.main_input_output(
+        input_query.text, 
+        granularity_level=input_query.granularity, 
+        model=input_query.model,
+        device=input_query.device
+        )
+    return {"text": input_query.text, 
+            "granularity": input_query.granularity, 
+            "model": input_query.model,
+            "device": input_query.device,
+            "segs": segment_result}
 
 # uvicorn main:app --host localhost --port 8001
 if __name__ == "__main__":

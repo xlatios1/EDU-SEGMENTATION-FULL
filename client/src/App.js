@@ -11,22 +11,22 @@ import './App.css'
 const App = () => {
 
   return (
-    <Router>
-      <AppBar position="static">
+    <Router >
+      <AppBar position="static" sx={{backgroundColor: "#d5e1ee"}}>
         <Toolbar sx={{ justifyContent: "center" }}>
-          <Typography variant="h6" component={Link} to="/" sx={{ textDecoration: "none", color: "inherit", margin: "0 16px" }}>
-            Home
+          <Typography variant="h6" component={Link} to="/" sx={{ textDecoration: "none", color: "black", margin: "0 16px" }}>
+            About
           </Typography>
-          <Typography variant="h6" component={Link} to="/explore" sx={{ textDecoration: "none", color: "inherit", margin: "0 16px" }}>
+          <Typography variant="h6" component={Link} to="/explore" sx={{ textDecoration: "none", color: "black", margin: "0 16px" }}>
             Explore
           </Typography>
-          <Typography variant="h6" component={Link} to="/analyze" sx={{ textDecoration: "none", color: "inherit", margin: "0 16px" }}>
+          <Typography variant="h6" component={Link} to="/analyze" sx={{ textDecoration: "none", color: "black", margin: "0 16px" }}>
             Analyze
           </Typography>
-          <Typography variant="h6" component={Link} to="/segment" sx={{ textDecoration: "none", color: "inherit", margin: "0 16px" }}>
+          <Typography variant="h6" component={Link} to="/segment" sx={{ textDecoration: "none", color: "black", margin: "0 16px" }}>
             Segment
           </Typography>
-          <Typography variant="h6" component={Link} to="/yelp" sx={{ textDecoration: "none", color: "inherit", margin: "0 16px" }}>
+          <Typography variant="h6" component={Link} to="/yelp" sx={{ textDecoration: "none", color: "black", margin: "0 16px" }}>
             Yelp
           </Typography>
         </Toolbar>

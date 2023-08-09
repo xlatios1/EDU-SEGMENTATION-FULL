@@ -14,6 +14,9 @@ EDU_URL = "http://localhost:5002/api/"
 
 class InputText(BaseModel):
     text: str
+    granularity: str
+    model: str
+    device: str
 
 
 app = FastAPI()
@@ -42,26 +45,23 @@ def get_raw_data(id: int):
 @app.post("/api/analyze-rest-review")
 def analyze_text(input_text: InputText = Body(...)):
     seg_url = SEGBOT_URL + "segbot-segment-service"
-    payload = {"query": input_text.text}
-    print("testing1", input_text.text)
+    payload = {"text": input_text.text, 
+               "granularity": input_text.granularity, 
+               "model": input_text.model,
+               "device": input_text.device}
     headers = {"Content-Type": "application/json"}
 
     seg_response = requests.post(seg_url, data=json.dumps(payload), headers=headers)
-    print("test2", seg_response)
 
     if seg_response.status_code == 200:
-        print('test3: it was good')
         seg_data = seg_response.json()
-        print('what was the seg_data', seg_data)
         edu_url = EDU_URL + "edu-sentiment-analysis-service"
-        print('edu url', edu_url)
         merge_ls = []
         for ls in seg_data['segs']:
             part = " ".join(ls)
             merge_ls.append(part)
         seg_data['segs'] = merge_ls
         edu_payload = seg_data
-        print('edu payload', edu_payload)
         edu_response = requests.post(edu_url, data=json.dumps(edu_payload), headers=headers)
 
         if edu_response.status_code == 200:
@@ -78,17 +78,25 @@ def analyze_text(input_text: InputText = Body(...)):
 @app.post("/api/segment-rest-review")
 def segment_text(input_text: InputText = Body(...)):
     url = SEGBOT_URL + "segbot-segment-service"
-    payload = {"query": input_text.text}
+    payload = {"text": input_text.text, 
+               "granularity": input_text.granularity, 
+               "model": input_text.model,
+               "device": input_text.device}
     headers = {"Content-Type": "application/json"}
-
+    print('json dumps', json.dumps(payload))
+    print('url', url)
     response = requests.post(url, data=json.dumps(payload), headers=headers)
+    print('response', response)
 
     if response.status_code == 200:
         segs_response = response.json()
+        print('segs_response,', segs_response)
         return segs_response
     else:
+        print('errored')
         raise HTTPException(status_code=response.status_code, detail="API request failed")
 
 # uvicorn main:app --host localhost --port 5000
 if __name__ == "__main__":
+    print('5000 running')
     uvicorn.run(app, host="localhost", port=5000)

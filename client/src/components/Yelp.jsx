@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import Box from "@mui/material/Box";
 import Loading from "./Loading";
-import { searchBusinesses } from "./Yelp/YelpApiService";
+import { searchBusinesses } from "../api/YelpApiService";
 import { analyzeBusiness } from "./Yelp/AnalyzeBusiness";
 import { renderPieCharts } from "./Yelp/PieChart";
 import SearchBar from "./Yelp/SearchBar";
