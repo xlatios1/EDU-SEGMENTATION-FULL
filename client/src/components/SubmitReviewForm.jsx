@@ -175,8 +175,8 @@ const SubmitReviewForm = () => {
                 onChange={handleDeviceChange}
                 sx={{ backgroundColor: "#fff", minWidth: "150px" }}
               >
-                <MenuItem value="cuda">GPU</MenuItem>
                 <MenuItem value="cpu">CPU</MenuItem>
+                <MenuItem value="cuda">GPU</MenuItem>
               </Select>
             </FormControl>
 
@@ -184,7 +184,14 @@ const SubmitReviewForm = () => {
               type="submit"
               variant="contained"
               color="primary"
-              disabled={!inputText || loading}
+              disabled={
+                !(
+                  inputText &&
+                  selectedGranularity &&
+                  selectedModel &&
+                  selectedDevice
+                ) || loading
+              }
               size="large"
               sx={{ marginTop: 1 }}
             >

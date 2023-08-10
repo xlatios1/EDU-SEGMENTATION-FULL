@@ -3,28 +3,16 @@ import React from "react";
 import { Button as BootstrapButton } from "react-bootstrap";
 import styled from "styled-components";
 
-const HighlightedText = styled.span`
-  background-color: ${({ isHighlighted }) =>
-    isHighlighted ? "rgb(252, 239, 220)" : "inherit"};
-`;
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
 
-const LabelButton = styled(BootstrapButton)`
-  padding: 0.5rem 1rem;
-`;
-
-const Wrapper = styled.div`
-  min-width: 600px;
-  margin-bottom: 1rem;
-`;
-
-const Card = styled.div`
-  border-radius: 0rem;
-  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
-  min-width: 600px;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  background-color: white;
-`;
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 
 const CardHeader = styled.div`
   background-color: #32383e;
@@ -35,27 +23,38 @@ const CardHeader = styled.div`
   border-radius: 0.25rem 0.25rem 0 0;
 `;
 
-const CardBody = styled.div`
-  padding: 1.25rem;
-`;
-
 const SegmentResult = ({ result }) => {
   return (
-    <Card>
-      <CardHeader>Segmentation Result</CardHeader>
-      <CardBody>
-        <Wrapper>
-          <h4>Original Text:</h4>
-          <p>{result.text}</p>
-          <h4>Segments:</h4>
-          <ol>
-            {result.segs.map((segments, index) => (
-              <li key={index}>{segments}</li>
-            ))}
-          </ol>
-        </Wrapper>
-      </CardBody>
+    <div className="card-container">
+      
+    <Card className="card">
+    <CardHeader>EDU-segmented results</CardHeader>
+      <CardContent>
+        
+        <p>
+          <strong>Original Text:</strong> <br/>{result.text} 
+        </p>
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell><strong>Index</strong></TableCell>
+                  <TableCell><strong>Words</strong></TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {result.segs.map((words, index) => (
+                  <TableRow key={`${words}-${index}`}>
+                    <TableCell>{words[0]}</TableCell>
+                    <TableCell>{words[1]}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+      </CardContent>
     </Card>
+  </div>
   );
 };
 

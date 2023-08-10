@@ -12,7 +12,6 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
-
 const FormContainer = styled.div`
   margin-top: 2rem;
   display: flex;
@@ -47,7 +46,6 @@ const SubmitSegmentForm = () => {
     setSelectedDevice(e.target.value);
   };
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const startTime = performance.now();
@@ -55,17 +53,18 @@ const SubmitSegmentForm = () => {
 
     try {
       const response = await apiService.segmentReview(
-        inputText, 
+        inputText,
         selectedGranularity,
         selectedModel,
-        selectedDevice);
+        selectedDevice
+      );
       //   const responseData = JSON.parse(response);
       setResult(response);
     } catch (error) {
       setError("Unable to process the review. Please try again.");
       setOpen(true);
       setInputText("");
-    }finally {
+    } finally {
       setLoading(false);
     }
     const endTime = performance.now();
@@ -96,13 +95,15 @@ const SubmitSegmentForm = () => {
   return (
     <div className="Segment">
       <FormContainer>
-        <div sx={{color:"white"}}>
-        <h3 className="text">Enter your review for <u>segmentation:</u></h3>
+        <div sx={{ color: "white" }}>
+          <h3 className="text">
+            Enter your review for <u>segmentation:</u>
+          </h3>
         </div>
         <br />
         <form onSubmit={handleSubmit}>
           <TextField
-          className="textboxInput"
+            className="textboxInput"
             label="Review"
             multiline
             rows={4}
@@ -115,16 +116,20 @@ const SubmitSegmentForm = () => {
               marginBottom: "1rem", // Add some margin to separate the TextField from the Button
             }}
           />
-          <div sx={{
-              display: 'flex',
-              alignItems: 'center',
-              marginTop: '1rem',
-            }}>
-          <FormControl sx={{
-                backgroundColor: '#fff',
-                minWidth: '200px',
-                marginRight: '1rem',
-              }}>
+          <div
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              marginTop: "1rem",
+            }}
+          >
+            <FormControl
+              sx={{
+                backgroundColor: "#fff",
+                minWidth: "200px",
+                marginRight: "1rem",
+              }}
+            >
               <InputLabel id="granularity-label">Granularity</InputLabel>
               <Select
                 value={selectedGranularity}
@@ -137,11 +142,14 @@ const SubmitSegmentForm = () => {
                 </MenuItem>
               </Select>
             </FormControl>
-            <FormControl className="model-select" sx={{
-                backgroundColor: '#fff',
-                minWidth: '200px',
-                marginRight: '1rem',
-              }}>
+            <FormControl
+              className="model-select"
+              sx={{
+                backgroundColor: "#fff",
+                minWidth: "200px",
+                marginRight: "1rem",
+              }}
+            >
               <InputLabel id="model-label">Model</InputLabel>
               <Select
                 value={selectedModel}
@@ -153,35 +161,44 @@ const SubmitSegmentForm = () => {
                 <MenuItem value="bert_cased">BERT-cased model</MenuItem>
               </Select>
             </FormControl>
-            <FormControl sx={{
-                backgroundColor: '#fff',
-                minWidth: '200px',
-                marginRight: '1rem',
-              }}>
+            <FormControl
+              sx={{
+                backgroundColor: "#fff",
+                minWidth: "200px",
+                marginRight: "1rem",
+              }}
+            >
               <InputLabel id="device-label">Device</InputLabel>
               <Select
                 value={selectedDevice}
                 onChange={handleDeviceChange}
                 sx={{ backgroundColor: "#fff", minWidth: "150px" }}
               >
-                <MenuItem value="cuda">GPU</MenuItem>
                 <MenuItem value="cpu">CPU</MenuItem>
+                <MenuItem value="cuda">GPU</MenuItem>
               </Select>
             </FormControl>
-    
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            disabled={!inputText || loading}
-            size="large"
-            sx={{ marginTop: 1}}
-          >
-            Segment
-          </Button>
+
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              disabled={
+                !(
+                  inputText &&
+                  selectedGranularity &&
+                  selectedModel &&
+                  selectedDevice
+                ) || loading
+              }
+              size="large"
+              sx={{ marginTop: 1 }}
+            >
+              Segment
+            </Button>
           </div>
         </form>
-        <p className= "text">Elapsed Time: {(elapsedTime/1000).toFixed(2)}s</p>
+        <p className="text">Elapsed Time: {(elapsedTime / 1000).toFixed(2)}s</p>
 
         {loading && <ThreeDots color="#00BFFF" height={80} width={80} />}
         {result && <SegmentResult result={result} />}
