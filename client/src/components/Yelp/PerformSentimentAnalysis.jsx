@@ -3,13 +3,9 @@ import { parseResponseData } from "../../util/DataParsing";
 export const analyzeSentiment = async (name, inputText) => {
   try {
     if (inputText) {
-      console.log("analyzeSentiment: inputText", name, inputText);
       const response = await apiService.postReview(inputText);
-      console.log("inputText:", inputText, name, "response:", response);
       const responseData = JSON.parse(response);
-      console.log("inputText:", inputText, name, "responseData", responseData);
       const parsedData = parseResponseData(responseData);
-      console.log("inputText:", inputText, name, "parsedData", parsedData);
       return parsedData;
     }
   } catch (error) {

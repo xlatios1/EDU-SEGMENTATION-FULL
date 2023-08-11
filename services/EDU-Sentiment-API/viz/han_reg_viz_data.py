@@ -259,6 +259,7 @@ def store_attention_scores_from_input(input):
     query_dataloader = DatasetLoader(
         batch_size=512, asp_dict=ASP_DICT, input_data=dataset["query"]
     )
+
     del dataset
 
     model = HANREG(

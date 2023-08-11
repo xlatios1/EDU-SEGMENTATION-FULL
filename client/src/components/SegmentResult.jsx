@@ -26,20 +26,29 @@ const CardHeader = styled.div`
 const SegmentResult = ({ result }) => {
   return (
     <div className="card-container">
-      
-    <Card className="card">
-    <CardHeader>EDU-segmented results</CardHeader>
-      <CardContent>
-        
-        <p>
-          <strong>Original Text:</strong> <br/>{result.text} 
-        </p>
+      <Card className="card">
+        <CardHeader>EDU-segmented results</CardHeader>
+        <CardContent>
+          <p>
+            <strong>Original Text:</strong> <br />
+            {result.text}
+          </p>
+          <p>
+            <strong>Granularity:</strong> {result.granularity}{" "} <br/>
+            <strong>Model:</strong> {result.model}{" "} <br/>
+            <strong>Device:</strong> {result.device}{" "}<br/>
+            <strong>Conjunction Words:</strong> {result.conjunctions}{" "}
+          </p>
           <TableContainer>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell><strong>Index</strong></TableCell>
-                  <TableCell><strong>Words</strong></TableCell>
+                  <TableCell>
+                    <strong>Index</strong>
+                  </TableCell>
+                  <TableCell>
+                    <strong>Words</strong>
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -52,9 +61,9 @@ const SegmentResult = ({ result }) => {
               </TableBody>
             </Table>
           </TableContainer>
-      </CardContent>
-    </Card>
-  </div>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 

@@ -27,7 +27,8 @@ const apiService = {
     inputText,
     selectedGranularity,
     selectedModel,
-    selectedDevice
+    selectedDevice,
+    selectedConjunction
   ) => {
     try {
       const response = await axios.post(
@@ -37,6 +38,7 @@ const apiService = {
           granularity: selectedGranularity,
           model: selectedModel,
           device: selectedDevice,
+          conjunctions: selectedConjunction
         }),
         {
           headers: {
@@ -44,7 +46,6 @@ const apiService = {
           },
         }
       );
-      console.log("did it reach here")
       return response.data;
     } catch (error) {
       console.error("Request failed with error:", error);
@@ -56,7 +57,8 @@ const apiService = {
     inputText,
     selectedGranularity,
     selectedModel,
-    selectedDevice
+    selectedDevice,
+    selectedConjunction
   ) => {
     try {
       const response = await axios.post(
@@ -65,7 +67,8 @@ const apiService = {
           text: inputText,
           granularity: selectedGranularity,
           model: selectedModel,
-          device: selectedDevice
+          device: selectedDevice,
+          conjunctions: selectedConjunction
         }),
         {
           headers: {
@@ -73,7 +76,8 @@ const apiService = {
           },
         }
       );
-      console.log('helloo')
+      console.log("response", response)
+      
       return response.data;
     } catch (error) {
       console.error("Request failed with error:", error);

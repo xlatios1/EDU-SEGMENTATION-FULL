@@ -17,6 +17,7 @@ class InputText(BaseModel):
     granularity: str
     model: str
     device: str
+    conjunctions: str
 
 
 app = FastAPI()
@@ -48,7 +49,8 @@ def analyze_text(input_text: InputText = Body(...)):
     payload = {"text": input_text.text, 
                "granularity": input_text.granularity, 
                "model": input_text.model,
-               "device": input_text.device}
+               "device": input_text.device,
+               "conjunctions": input_text.conjunctions}
     headers = {"Content-Type": "application/json"}
 
     seg_response = requests.post(seg_url, data=json.dumps(payload), headers=headers)
@@ -63,6 +65,7 @@ def analyze_text(input_text: InputText = Body(...)):
         seg_data['segs'] = merge_ls
         edu_payload = seg_data
         edu_response = requests.post(edu_url, data=json.dumps(edu_payload), headers=headers)
+
 
         if edu_response.status_code == 200:
             edu_data = edu_response.json()
@@ -81,22 +84,18 @@ def segment_text(input_text: InputText = Body(...)):
     payload = {"text": input_text.text, 
                "granularity": input_text.granularity, 
                "model": input_text.model,
-               "device": input_text.device}
+               "device": input_text.device,
+               "conjunctions": input_text.conjunctions}
     headers = {"Content-Type": "application/json"}
-    print('json dumps', json.dumps(payload))
-    print('url', url)
     response = requests.post(url, data=json.dumps(payload), headers=headers)
-    print('response', response)
+    print('responsessfasd', response)
 
     if response.status_code == 200:
         segs_response = response.json()
-        print('segs_response,', segs_response)
         return segs_response
     else:
-        print('errored')
         raise HTTPException(status_code=response.status_code, detail="API request failed")
 
 # uvicorn main:app --host localhost --port 5000
 if __name__ == "__main__":
-    print('5000 running')
     uvicorn.run(app, host="localhost", port=5000)

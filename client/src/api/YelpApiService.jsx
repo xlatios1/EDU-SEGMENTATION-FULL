@@ -24,7 +24,6 @@ export const getBusinessesWithReviews = async (businesses) => {
         }
       })
     );
-    console.log("getBusinessesWithReviews:", businessesWithReviews);
     return businessesWithReviews;
   } catch (error) {
     console.error("ERROR: businessesWithReviews:", error);

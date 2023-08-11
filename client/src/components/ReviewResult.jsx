@@ -63,42 +63,56 @@ const ReviewResult = ({ result }) => {
   const segments = result.raw_text;
 
   return (
-    <Card>
-      <CardHeader>Review Result</CardHeader>
-      <CardBody>
-        <Wrapper>
-          <div>
-            {Object.entries(result.labels).map(([aspect, sentiment], index) => (
-              <LabelButton
-                key={index}
-                variant={
-                  sentiment === "positive"
-                    ? "success"
-                    : sentiment === "negative"
-                    ? "danger"
-                    : "info"
-                }
-                onClick={() => handleClick(eduScoreIndexes[index][0])}
-                className="mx-1"
-              >
-                {`${aspect}: ${sentiment}`}
-              </LabelButton>
-            ))}
-          </div>
-          <br />
-          <p>
-            {segments.map((segment, index) => (
-              <React.Fragment key={index}>
-                <HighlightedText isHighlighted={highlightedIndex === index}>
-                  {segment}
-                </HighlightedText>
-                {index < segments.length - 1 && " "}
-              </React.Fragment>
-            ))}
-          </p>
-        </Wrapper>
-      </CardBody>
-    </Card>
+    <div>
+      <Card>
+        <CardHeader>Review Result</CardHeader>
+        <p>
+          <strong>Original Text:</strong> <br />
+          {result.text}
+        </p>
+        <p>
+          <strong>Granularity:</strong> {result.granularity} <br />
+          <strong>Model:</strong> {result.model} <br />
+          <strong>Device:</strong> {result.device} <br />
+          <strong>Conjunction Words:</strong> {result.conjunctions} 
+        </p>
+        <CardBody>
+          <Wrapper>
+            <div>
+              {Object.entries(result.labels).map(
+                ([aspect, sentiment], index) => (
+                  <LabelButton
+                    key={index}
+                    variant={
+                      sentiment === "positive"
+                        ? "success"
+                        : sentiment === "negative"
+                        ? "danger"
+                        : "info"
+                    }
+                    onClick={() => handleClick(eduScoreIndexes[index][0])}
+                    className="mx-1"
+                  >
+                    {`${aspect}: ${sentiment}`}
+                  </LabelButton>
+                )
+              )}
+            </div>
+            <br />
+            <p>
+              {segments.map((segment, index) => (
+                <React.Fragment key={index}>
+                  <HighlightedText isHighlighted={highlightedIndex === index}>
+                    {segment}
+                  </HighlightedText>
+                  {index < segments.length - 1 && " "}
+                </React.Fragment>
+              ))}
+            </p>
+          </Wrapper>
+        </CardBody>
+      </Card>
+    </div>
   );
 };
 

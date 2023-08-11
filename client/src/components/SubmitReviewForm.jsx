@@ -26,10 +26,12 @@ const SubmitReviewForm = () => {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [open, setOpen] = useState(false);
-  const [selectedGranularity, setSelectedGranularity] = useState("");
-  const [selectedModel, setSelectedModel] = useState("");
-  const [selectedDevice, setSelectedDevice] = useState("");
+  const [selectedGranularity, setSelectedGranularity] = useState("default");
+  const [selectedModel, setSelectedModel] = useState("bart");
+  const [selectedDevice, setSelectedDevice] = useState("cpu");
   const [elapsedTime, setElapsedTime] = useState("");
+  const [selectedConjunction, setSelectedConjunction] = useState("default");
+  const [selectedCustom, setSelectedCustom] = useState("and, however, or")
 
   const handleChange = (event) => {
     setInputText(event.target.value);
@@ -47,6 +49,14 @@ const SubmitReviewForm = () => {
     setSelectedDevice(e.target.value);
   };
 
+  const handleConjunctionChange = (e) => {
+    setSelectedConjunction(e.target.value);
+  };
+
+  const handleCustomChange = (e) => {
+    setSelectedCustom(e.target.value);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const startTime = performance.now();
@@ -57,7 +67,8 @@ const SubmitReviewForm = () => {
         inputText,
         selectedGranularity,
         selectedModel,
-        selectedDevice
+        selectedDevice,
+        selectedCustom
       );
       const responseData = JSON.parse(response);
       const parsedData = parseResponseData(responseData);
@@ -179,29 +190,61 @@ const SubmitReviewForm = () => {
                 <MenuItem value="cuda">GPU</MenuItem>
               </Select>
             </FormControl>
+            {selectedGranularity === "conjunction_words" && (
+              <FormControl
+                sx={{
+                  backgroundColor: "#fff",
+                  minWidth: "200px",
+                  marginRight: "1rem",
+                }}
+              >
+                <InputLabel id="conjunction-label">
+                  Conjunction Words
+                </InputLabel>
+                <Select
+                  value={selectedConjunction}
+                  onChange={handleConjunctionChange}
+                  sx={{ backgroundColor: "#fff", minWidth: "150px" }}
+                >
+                  <MenuItem value="default">Default</MenuItem>
+                  <MenuItem value="custom">Custom</MenuItem>
+                </Select>
+              </FormControl>
+            )}
+
+            {selectedGranularity === "conjunction_words" && selectedConjunction === "custom" && (
+              <TextField
+                label="Custom Option"
+                onChange={handleCustomChange}
+                sx={{
+                  backgroundColor: "#fff",
+                  minWidth: "200px",
+                }}
+              />
+            )}
 
             <Button
               type="submit"
               variant="contained"
               color="primary"
-              disabled={
-                !(
-                  inputText &&
-                  selectedGranularity &&
-                  selectedModel &&
-                  selectedDevice
-                ) || loading
-              }
+              disabled={!inputText || loading}
               size="large"
               sx={{ marginTop: 1 }}
             >
-              Segment
+              Analyze
             </Button>
           </div>
         </form>
 
         {loading && <ThreeDots color="#00BFFF" height={80} width={80} />}
-        <p className="text">Elapsed Time: {(elapsedTime / 1000).toFixed(2)}s</p>
+        <p className="text">
+          Default Conjunction Words Option segments conjunction words "and, or,
+          however" at the start or end of each EDU segment. <br />
+          Custom Option Example: (insert conjunction word separated by a comma)
+        </p>
+        <p className="text">
+          <em>Elapsed Time: {(elapsedTime / 1000).toFixed(2)}s</em>
+        </p>
         {result && <ReviewResult result={result} />}
         {error && (
           <Snackbar

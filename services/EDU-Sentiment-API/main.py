@@ -21,10 +21,16 @@ class InputData(BaseModel):
     granularity: str
     model: str
     device: str
+    conjunctions: str
     segs: list
 
 
 class AnalysisResult(BaseModel):
+    text: str
+    granularity: str
+    model: str
+    device: str
+    conjunctions: str
     query: str
 
 @app.get("/")
@@ -33,11 +39,15 @@ def home():
 
 @app.post("/api/edu-sentiment-analysis-service", response_model=AnalysisResult)
 def edu_sentiment_analysis(input_data: InputData = Body(...)):
-    
     parsed_query_json = server_util.parse_input(input_data)
     raw_analysis_result = store_attention_scores_from_input(parsed_query_json)
     analysis_result = server_util.convert_to_json(data=raw_analysis_result)
-    return {"query": analysis_result}
+    return {"text": input_data.text, 
+            "granularity": input_data.granularity, 
+            "model": input_data.model,
+            "device": input_data.device,
+            "conjunctions": input_data.conjunctions,
+            "query": analysis_result}
 
 # uvicorn main:app --host localhost --port 5002
 if __name__ == "__main__":

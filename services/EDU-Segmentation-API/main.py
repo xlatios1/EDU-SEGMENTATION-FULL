@@ -20,12 +20,14 @@ class InputQuery(BaseModel):
     granularity: str
     model: str
     device: str
+    conjunctions: str
 
 class SegmentResult(BaseModel):
     text: str
     granularity: str
     model: str
     device: str
+    conjunctions: str
     segs: list
 
 
@@ -40,12 +42,14 @@ def segment_text(input_query: InputQuery = Body(...)):
         input_query.text, 
         granularity_level=input_query.granularity, 
         model=input_query.model,
+        conjunctions=input_query.conjunctions,
         device=input_query.device
         )
     return {"text": input_query.text, 
             "granularity": input_query.granularity, 
             "model": input_query.model,
             "device": input_query.device,
+            "conjunctions": input_query.conjunctions,
             "segs": segment_result}
 
 # uvicorn main:app --host localhost --port 8001
