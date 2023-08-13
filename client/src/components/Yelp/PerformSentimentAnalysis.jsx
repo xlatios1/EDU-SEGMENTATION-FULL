@@ -3,7 +3,7 @@ import { parseResponseData } from "../../util/DataParsing";
 export const analyzeSentiment = async (name, inputText) => {
   try {
     if (inputText) {
-      const response = await apiService.postReview(inputText);
+      const response = await apiService.postReview(inputText, "default", "bart", "cpu", "and, however, but");
       const responseData = JSON.parse(response);
       const parsedData = parseResponseData(responseData);
       return parsedData;

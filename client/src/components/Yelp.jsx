@@ -61,6 +61,7 @@ const Yelp = () => {
       <div>
         <div>
           <h1 style={{ textAlign: "center" }}>Yelp Restaurant Search</h1>
+          <p> <strong>Model:</strong> Segbot BART | <strong>Granularity:</strong> Default | <strong>Device:</strong> CPU</p>
           <SearchBar
             businessName={businessName}
             setBusinessName={setBusinessName}

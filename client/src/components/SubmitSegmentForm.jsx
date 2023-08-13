@@ -62,10 +62,6 @@ const SubmitSegmentForm = () => {
     setLoading(true);
 
     try {
-      console.log("selectedGranularity", selectedGranularity)
-      console.log("selectedModel", selectedModel)
-      console.log("selectedDevice", selectedDevice)
-      console.log("selectedCustom", selectedCustom)
       const response = await apiService.segmentReview(
         inputText,
         selectedGranularity,
