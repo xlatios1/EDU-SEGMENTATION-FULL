@@ -1,9 +1,14 @@
-from edu_segmentation import download, main
+from edu_segmentation.download import download_models
+from edu_segmentation.main import ModelFactory, EDUSegmentation
 
-def main_input_output(sent, granularity_level="default", model="bart", conjunctions=['and','or','however'], device='cpu'):
-    if conjunctions == "default":
-        conjunctions = ["and", "or", "however"]
-    elif type(conjunctions) == str:
+def main_input_output(sent, granularity_level="default", model="bart", conjunctions=['and','but','however'], device='cpu'):
+    if type(conjunctions) == str:
         conjunctions = conjunctions.split(",")
-    download.download_models()
-    return main.run_segbot(sent, granularity_level=granularity_level, model=model, conjunctions=conjunctions, device=device)
+        conjunctions = [i.strip() for i in conjunctions]
+    download_models()
+    model_type = ModelFactory.create_model(model)
+    edu_segmentation = EDUSegmentation(model_type)
+    return edu_segmentation.run(sent, granularity=granularity_level, conjunctions=conjunctions, device=device)
+
+
+

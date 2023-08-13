@@ -88,7 +88,6 @@ def segment_text(input_text: InputText = Body(...)):
                "conjunctions": input_text.conjunctions}
     headers = {"Content-Type": "application/json"}
     response = requests.post(url, data=json.dumps(payload), headers=headers)
-    print('responsessfasd', response)
 
     if response.status_code == 200:
         segs_response = response.json()

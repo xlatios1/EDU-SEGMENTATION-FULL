@@ -31,7 +31,7 @@ const SubmitReviewForm = () => {
   const [selectedDevice, setSelectedDevice] = useState("cpu");
   const [elapsedTime, setElapsedTime] = useState("");
   const [selectedConjunction, setSelectedConjunction] = useState("default");
-  const [selectedCustom, setSelectedCustom] = useState("and, however, or")
+  const [selectedCustom, setSelectedCustom] = useState("and, however, but")
 
   const handleChange = (event) => {
     setInputText(event.target.value);
@@ -238,7 +238,7 @@ const SubmitReviewForm = () => {
 
         {loading && <ThreeDots color="#00BFFF" height={80} width={80} />}
         <p className="text">
-          Default Conjunction Words Option segments conjunction words "and, or,
+          Default Conjunction Words Option segments conjunction words "and, but,
           however" at the start or end of each EDU segment. <br />
           Custom Option Example: (insert conjunction word separated by a comma)
         </p>

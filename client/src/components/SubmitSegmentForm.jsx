@@ -30,8 +30,7 @@ const SubmitSegmentForm = () => {
   const [selectedDevice, setSelectedDevice] = useState("cpu");
   const [elapsedTime, setElapsedTime] = useState("");
   const [selectedConjunction, setSelectedConjunction] = useState("default");
-  const [selectedCustom, setSelectedCustom] = useState("and, however, or");
-
+  const [selectedCustom, setSelectedCustom] = useState("and, however, but");
 
   const handleChange = (event) => {
     setInputText(event.target.value);
@@ -63,6 +62,10 @@ const SubmitSegmentForm = () => {
     setLoading(true);
 
     try {
+      console.log("selectedGranularity", selectedGranularity)
+      console.log("selectedModel", selectedModel)
+      console.log("selectedDevice", selectedDevice)
+      console.log("selectedCustom", selectedCustom)
       const response = await apiService.segmentReview(
         inputText,
         selectedGranularity,
@@ -72,7 +75,6 @@ const SubmitSegmentForm = () => {
       );
       //   const responseData = JSON.parse(response);
       setResult(response);
-      console.log('ress', response.conjunctions)
     } catch (error) {
       setError("Unable to process the review. Please try again.");
       setOpen(true);
@@ -212,16 +214,17 @@ const SubmitSegmentForm = () => {
                 </Select>
               </FormControl>
             )}
-            {selectedGranularity === "conjunction_words" && selectedConjunction === "custom" && (
-              <TextField
-                label="Custom Option"
-                onChange={handleCustomChange}
-                sx={{
-                  backgroundColor: "#fff",
-                  minWidth: "200px"
-                }}
-              />
-            )}
+            {selectedGranularity === "conjunction_words" &&
+              selectedConjunction === "custom" && (
+                <TextField
+                  label="Custom Option"
+                  onChange={handleCustomChange}
+                  sx={{
+                    backgroundColor: "#fff",
+                    minWidth: "200px",
+                  }}
+                />
+              )}
 
             <Button
               type="submit"
@@ -235,9 +238,14 @@ const SubmitSegmentForm = () => {
             </Button>
           </div>
         </form>
-        <p className="text">Default Conjunction Words Option segments conjunction words "and, or, however" at the start or end of each EDU segment. <br/>
-        Custom Option Example: (insert conjunction word separated by a comma)</p>
-        <p className="text"><em>Elapsed Time: {(elapsedTime / 1000).toFixed(2)}s</em></p>
+        <p className="text">
+          Default Conjunction Words Option segments conjunction words "and, but,
+          however" at the start or end of each EDU segment. <br />
+          Custom Option Example: (insert conjunction word separated by a comma)
+        </p>
+        <p className="text">
+          <em>Elapsed Time: {(elapsedTime / 1000).toFixed(2)}s</em>
+        </p>
 
         {loading && <ThreeDots color="#00BFFF" height={80} width={80} />}
         {result && <SegmentResult result={result} />}
