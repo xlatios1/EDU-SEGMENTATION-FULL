@@ -7,5 +7,5 @@ server/venv/
 *.pyd
 env
 node_modules/*
-services/EDU-Yelp-Sentiment-Backend/node_modules/*
+server/EDU-Yelp-Sentiment-Backend/node_modules/*
 .env

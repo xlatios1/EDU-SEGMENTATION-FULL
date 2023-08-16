@@ -6,8 +6,12 @@ def main_input_output(sent, granularity_level="default", model="bart", conjuncti
         conjunctions = conjunctions.split(",")
         conjunctions = [i.strip() for i in conjunctions]
     download_models()
-    model_type = ModelFactory.create_model(model)
-    edu_segmentation = EDUSegmentation(model_type)
+    try:
+        model_type = ModelFactory.create_model(model)
+        edu_segmentation = EDUSegmentation(model_type)
+    except:
+        print("No such model exists.")
+        return
     return edu_segmentation.run(sent, granularity=granularity_level, conjunctions=conjunctions, device=device)
 
 

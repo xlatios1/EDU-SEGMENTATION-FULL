@@ -21,6 +21,7 @@ const Yelp = () => {
   useEffect(() => {
     chartComponents.forEach((chart) => chart.destroy());
     setChartComponents([]);
+    console.log('businesseses', businesses)
   }, [businesses]);
 
   const searchBusiness = async () => {
