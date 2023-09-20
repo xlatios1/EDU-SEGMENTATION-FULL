@@ -9,3 +9,62 @@ env
 node_modules/*
 server/EDU-Yelp-Sentiment-Backend/node_modules/*
 .env
+.gitignore
+
+### Create New Branch ###
+# git checkout -b new_branch
+# git fetch origin
+# git merge origin/main
+
+### Steps to Pull Branch ###
+# git checkout dmgr2      # gets you "on branch dmgr2"
+# git fetch origin        # gets you up to date with origin
+# git merge origin/master
+
+### Steps to Push Branch ###
+# git status
+# git add .
+# git commit -m "comments"
+# git restore --staged <file>     # if you realised you should not push a certain file
+# git push
+
+### Rename branch ###
+# git branch -m master develop    # rename master on local
+# git push origin :master         # delete master on remote
+# git push origin develop         # create develop on remote
+# git checkout -b master develop  # create a new local master on top of develop
+# git push origin master          # create master on remote
+
+### Delete Branch ###
+# git branch -D delete_branch
+
+### Delete remotely ###
+# git push origin --delete branch
+
+### Git stash ###
+# git stash -u or git stash --include-untracked     # stash untracked files.
+# git stash -a or git stash --all                   # stash untracked files and ignored files.
+# git stash                                         # pop to get your stashed changes back.
+
+### to run testscript ###
+# chmod 777 ./test/yijun_run.sh       # If need permissions, this is to let sys know that it is okay
+# -W error::UserWarning               # add detailed error trace message
+# ./test/yijun_run.sh
+# ./diff_test/yijun_diff_run.sh
+
+### regarding paths n environments ###
+# to create environment:    python3 -m venv name
+# to activate environment:  source lighthouse_selenium_env//bin/activate
+# to delete environment:    deactivate
+# to modify paths:          sudo nano /etc/paths    # safterwards restart terminal for changes to kick in
+
+### to delete all __name__(example, DS_Store) files ###
+# find . -name ".DS_Store" -delete
+
+### TO EDIT PATH ###
+# code ~/.zshrc
+# https://github.com/microsoft/pylance-release/issues/29   --> extraPaths for settings.json to link diff libs or env to your main project
+
+
+# a_env\Scripts\activate
+# sentiment_env\Scripts\activate

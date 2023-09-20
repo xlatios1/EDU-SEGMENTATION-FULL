@@ -30,11 +30,12 @@ conda activate segbot
 3. Install the `torch` package by running the following command:
 ```
 pip install https://download.pytorch.org/whl/cpu/torch-1.2.0%2Bcpu-cp37-cp37m-manylinux1_x86_64.whl
+conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 ```
 
 4. Install the required dependencies:
 ```
-pip install -r requirements.txt (uvicorn, fastapi)
+pip install -r requirements.txt
 ```
 
 
@@ -43,11 +44,8 @@ pip install -r requirements.txt (uvicorn, fastapi)
 To start the FastAPI server, run the following command in your terminal while your virtual environment is activated:
 
 ```
-uvicorn main:app --host localhost --port 8001
+uvicorn main:app --reload
 ```
 
+
 This will start the FastAPI server at `http://localhost:8001`. You can send HTTP POST requests to `http://localhost:8001/api/segbot-segment-service` with JSON input data to get segmented output.
-
-
-## Others
-To use GPU, change device="cuda" under run_segbot.py
